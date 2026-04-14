@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModelHike - Declarative App Transpiler</title>
+    <meta name="description"
+        content="Declare apps in a purpose-built DSL and deterministically transpile them into production source code for stacks like NestJS and Spring Boot.">
+    <meta property="og:title" content="ModelHike - Declarative App Transpiler">
+    <meta property="og:description"
+        content="Declare apps in a purpose-built DSL and deterministically transpile them into production source code.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ModelHike - Declarative App Transpiler">
+    <meta name="twitter:description"
+        content="Declare apps in a purpose-built DSL and deterministically transpile them into production source code.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Wremena';
+            src: url('https://cdn.jsdelivr.net/gh/mishamyrt/wremena@master/fonts/WremenaRegular.woff2') format('woff2');
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: 'Wremena';
+            src: url('https://cdn.jsdelivr.net/gh/mishamyrt/wremena@master/fonts/WremenaBold.woff2') format('woff2');
+            font-weight: 700;
+        }
+
+        :root {
+            --bg-white: #FFFFFF;
+            --text-primary: #0A1128;
+            --text-secondary: #4A5568;
+            --accent-coral: #FF5E4D;
+            --highlight-yellow: #FFD166;
+
+            --nav-bg: #0A1128;
+
+            --font-heading: 'Wremena', 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+            --max-w: 1220px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-primary);
+            background-color: var(--bg-white);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+        }
+
+        .highlight {
+            position: relative;
+            display: inline-block;
+            white-space: nowrap;
+            z-index: 1;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: -2px;
+            right: -2px;
+            height: 38%;
+            background-color: var(--highlight-yellow);
+            z-index: -1;
+            transform: rotate(-1deg);
+            border-radius: 2px;
+        }
+
+        .container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-wrapper {
+            padding: 6rem 0;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
+        }
+
+        #why-not-specs,
+        #not-mda,
+        #code-preview {
+            scroll-margin-top: 88px;
+        }
+
+        .bg-proof {
+            background-color: #f6f8fb;
+            background-image:
+                radial-gradient(at 12% 20%, rgba(255, 255, 255, 0.95) 0px, transparent 52%),
+                radial-gradient(at 88% 22%, rgba(88, 166, 255, 0.08) 0px, transparent 44%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(241, 245, 249, 0.96) 100%);
+            border-top: 1px solid rgba(10, 17, 40, 0.04);
+            border-bottom: 1px solid rgba(10, 17, 40, 0.04);
+        }
+
+        .bg-problem {
+            background-color: #fff8f6;
+            background-image:
+                radial-gradient(at 10% 18%, rgba(255, 255, 255, 0.96) 0px, transparent 54%),
+                radial-gradient(at 88% 78%, rgba(255, 94, 77, 0.06) 0px, transparent 46%),
+                linear-gradient(180deg, rgba(255, 251, 249, 0.98) 0%, rgba(255, 245, 240, 0.98) 100%);
+            border-top: 1px solid rgba(10, 17, 40, 0.04);
+            border-bottom: 1px solid rgba(10, 17, 40, 0.04);
+        }
+
+        .bg-problem+.bg-problem {
+            border-top: none;
+        }
+
+        .bg-solution {
+            background-color: #f8ecd5;
+            background-image:
+                radial-gradient(at 4% 16%, rgba(255, 255, 255, 0.8) 0px, transparent 50%),
+                radial-gradient(at 90% 85%, rgba(255, 209, 102, 0.4) 0px, transparent 50%),
+                radial-gradient(at 30% 90%, rgba(255, 94, 77, 0.05) 0px, transparent 50%);
+            border-top: 1px solid rgba(0, 0, 0, 0.03);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .bg-comparison {
+            background-color: #f2f7f2;
+            background-image:
+                radial-gradient(at 10% 20%, rgba(255, 255, 255, 0.92) 0px, transparent 52%),
+                radial-gradient(at 86% 24%, rgba(72, 187, 120, 0.07) 0px, transparent 44%),
+                linear-gradient(180deg, rgba(247, 252, 247, 0.98) 0%, rgba(236, 245, 236, 0.98) 100%);
+            border-top: 1px solid rgba(10, 17, 40, 0.04);
+            border-bottom: 1px solid rgba(10, 17, 40, 0.04);
+        }
+
+        .bg-ownership {
+            background-color: #eef5fb;
+            background-image:
+                radial-gradient(at 12% 18%, rgba(255, 255, 255, 0.92) 0px, transparent 52%),
+                radial-gradient(at 88% 78%, rgba(88, 166, 255, 0.1) 0px, transparent 46%),
+                linear-gradient(180deg, rgba(244, 249, 255, 0.98) 0%, rgba(232, 241, 250, 0.98) 100%);
+            border-top: 1px solid rgba(10, 17, 40, 0.04);
+            border-bottom: 1px solid rgba(10, 17, 40, 0.04);
+        }
+
+        /* Hero Background with Watermark */
+        .hero-bg {
+            background-color: var(--bg-white);
+            background-image:
+                linear-gradient(135deg, rgba(226, 249, 253, 0.975) 0%, rgba(255, 255, 255, 0.96) 50%, rgba(255, 233, 217, 0.975) 100%),
+                url('images/hero.png');
+            background-position: center, right 2% bottom 10%;
+            background-repeat: no-repeat, no-repeat;
+            background-size: cover, auto 55%;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.02);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .diagonal-slice {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 48vw;
+            background-color: var(--nav-bg);
+            clip-path: polygon(0 0, 100% 0, calc(100% - 6vw) 100%, 0 100%);
+            z-index: 1;
+        }
+
+        .hero-syntax-melt {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding-left: 0.1rem !important;
+            padding-right: 0.1rem !important;
+        }
+
+        /* Nav */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--nav-bg);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            /* slight separation for dark header */
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(10, 17, 40, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .nav-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 0.1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--bg-white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.82);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: white;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            cursor: pointer;
+            gap: 8px;
+        }
+
+        .logo:focus-visible,
+        .nav-link:focus-visible,
+        .btn:focus-visible {
+            outline: 3px solid var(--highlight-yellow);
+            outline-offset: 3px;
+            border-radius: 8px;
+        }
+
+        .btn-github {
+            background-color: #24292e;
+            color: white;
+            border: 2px solid #24292e;
+        }
+
+        .btn-github:hover {
+            background-color: #000;
+            border-color: #000;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero-cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--text-primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--text-primary);
+            color: var(--bg-white);
+            transform: translateY(-1px);
+        }
+
+        .code-preview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            align-items: stretch;
+        }
+
+        .code-preview-pane {
+            display: flex;
+            flex-direction: column;
+            min-height: 22rem;
+            height: 34rem;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            background: #fff;
+        }
+
+        .code-preview-pane-header {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            padding: 0.65rem 1rem;
+            background: var(--nav-bg);
+            color: #fff;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+        }
+
+        .code-preview-pane-header span[data-mh-preview-title],
+        .code-preview-pane-header span[data-mh-preview-output-summary] {
+            font-weight: 600;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .code-preview-badge {
+            flex-shrink: 0;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 0.2rem 0.45rem;
+            border-radius: 4px;
+            background: var(--highlight-yellow);
+            color: var(--text-primary);
+        }
+
+        .code-preview-pane pre {
+            flex: 1 1 auto;
+            min-height: 0;
+            margin: 0;
+            overflow: auto;
+            padding: 1rem 1.1rem;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            line-height: 1.55;
+            background: #fff;
+            color: var(--text-primary);
+            white-space: pre;
+        }
+
+        .code-preview-pane pre.code-preview-prism,
+        .code-preview-output-preview-pre.code-preview-prism {
+            background: #2d2d2d;
+            color: #ccc;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+        }
+
+        .code-preview-pane pre.code-preview-prism code,
+        .code-preview-output-preview-pre.code-preview-prism code {
+            font-family: var(--font-mono);
+            font-size: inherit;
+            line-height: inherit;
+            white-space: pre;
+            background: transparent;
+        }
+
+        /* Prism theme adds vertical margin to pre.language-* (loads after this sheet); gap shows pane bg as a white line */
+        #mh-code-preview .code-preview-pane pre {
+            margin: 0 !important;
+        }
+
+        #mh-code-preview .code-preview-pane pre.code-preview-prism {
+            border-top: none;
+        }
+
+        [data-mh-preview-body="model"] {
+            font-variant-ligatures: none;
+            -webkit-font-variant-ligatures: none;
+            font-feature-settings: 'liga' 0, 'calt' 0;
+            color: #ccc;
+            background: transparent;
+        }
+
+        #mh-code-preview .code-preview-pane:first-child pre {
+            background: #2d2d2d;
+            color: #ccc;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-top: none;
+        }
+
+        #mh-code-preview .code-preview-output-preview-pre.code-preview-prism {
+            margin: 0 1rem 0.65rem !important;
+        }
+
+        .code-preview-output-body {
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow: hidden;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .code-preview-file-list-wrap {
+            flex: 0 0 auto;
+            height: 13rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .code-preview-file-list-wrap::after {
+            content: '⋮  scroll for more';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 0.3rem 1rem;
+            font-size: 0.65rem;
+            font-family: var(--font-mono);
+            color: var(--text-secondary);
+            background: #f0f2f5;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .code-preview-file-list {
+            list-style: none;
+            margin: 0;
+            padding: 0.35rem 0 1.6rem;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .code-preview-file-list li {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            line-height: 1.4;
+            padding: 0.42rem 1rem;
+            color: var(--text-primary);
+            word-break: break-word;
+        }
+
+        .code-preview-file-dir {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .code-preview-file-name {
+            font-family: var(--font-body);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .code-preview-file-list li:nth-child(odd) {
+            background: #fff;
+        }
+
+        .code-preview-file-list li:nth-child(even) {
+            background: #f0f2f5;
+        }
+
+        .code-preview-output-empty {
+            margin: 0;
+            padding: 1rem 1.1rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .code-preview-output-preview-wrap {
+            flex: 1 1 auto;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .code-preview-output-preview-label {
+            margin: 0;
+            padding: 0.55rem 1rem 0.35rem;
+            font-size: 0.72rem;
+            line-height: 1.35;
+            color: var(--text-secondary);
+            font-family: var(--font-body);
+        }
+
+        .code-preview-output-preview-title {
+            display: inline-block;
+            margin-right: 0.35rem;
+            padding: 0.12rem 0.42rem;
+            border-radius: 999px;
+            background: rgba(255, 138, 101, 0.14);
+            color: var(--accent-coral);
+            font-weight: 700;
+        }
+
+        .code-preview-output-preview-name {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .code-preview-output-preview-pre {
+            flex: 1 1 auto;
+            min-height: 0;
+            max-height: 14rem;
+            margin: 0 1rem 0.65rem;
+            overflow: auto;
+            padding: 0.75rem 1rem;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            line-height: 1.5;
+            background: #f8fafc;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 6px;
+            white-space: pre;
+            color: var(--text-primary);
+        }
+
+        .code-preview-foot {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .code-preview-foot a {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .code-preview-steps-wrap {
+            display: flex;
+            justify-content: center;
+            margin: 0 0 1.75rem;
+        }
+
+        .code-preview-steps {
+            margin: 0;
+            padding-left: 1.35rem;
+            list-style-type: disc;
+            font-size: 1.05rem;
+            line-height: 2.1;
+            color: var(--text-primary);
+        }
+
+        .code-preview-steps li {
+            padding-left: 0.25rem;
+        }
+
+        .code-preview-steps li::marker {
+            color: var(--text-secondary);
+        }
+
+        .code-preview-cli-wrap {
+            max-width: 720px;
+            margin: 0 auto 1rem;
+        }
+
+        .code-preview-cli {
+            margin-top: 0;
+            margin-bottom: 0;
+            padding: 1rem 1.2rem;
+            font-size: 0.8rem;
+            line-height: 1.55;
+        }
+
+        .code-preview-cli-note {
+            margin-top: 0.5rem;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .code-preview-error {
+            margin-top: 1rem;
+            padding: 0.85rem 1rem;
+            border-radius: 8px;
+            background: #fff5f5;
+            border: 1px solid #feb2b2;
+            color: #c53030;
+            font-size: 0.9rem;
+        }
+
+        /* Hero Stacked Layout */
+        .hero {
+            padding: 5rem 1.5rem 5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 4.5vw, 4.2rem);
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .hero-action-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        .hero-visuals {
+            display: grid;
+            grid-template-columns: 1.1fr 1.3fr;
+            gap: 4rem;
+            width: 100%;
+            margin-top: 0;
+            align-items: center;
+        }
+
+        .hero-visuals>* {
+            min-width: 0;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            background: white;
+            margin-bottom: 2rem;
+        }
+
+        /* Split Section */
+        .split-section {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 4.5rem;
+            align-items: center;
+        }
+
+        .split-img {
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
+            display: block;
+            border-radius: 10px;
+            border: 2px solid #111;
+            background: white;
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+
+            /* Creates a soft fade at the edges */
+            mask-image: radial-gradient(circle,
+                    black 60%,
+                    rgba(0, 0, 0, 0.5) 85%,
+                    transparent 100%);
+            -webkit-mask-image: radial-gradient(circle,
+                    black 60%,
+                    rgba(0, 0, 0, 0.5) 85%,
+                    transparent 100%);
+
+            /* Blends the image colors with the background gradient */
+            mix-blend-mode: multiply;
+
+            /* Optional: Soften the edges further if the mask isn't enough */
+            filter: contrast(1.05) brightness(1.02);
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .list-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .list-stack h3 {
+            font-size: 1.35rem;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .list-stack p {
+            font-size: 1.05rem;
+            padding-left: 2.7rem;
+            margin-top: -4px;
+            line-height: 1.6;
+        }
+
+        .badge {
+            background: var(--highlight-yellow);
+            color: var(--text-primary);
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1rem;
+            font-family: var(--font-heading);
+            font-weight: bold;
+            border: 2px solid #0A1128;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 3.5rem;
+        }
+
+        .cards-grid--four {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 1100px) {
+            .cards-grid--four {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.85rem 1.45rem;
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0;
+        }
+
+        .card h3 .badge {
+            position: relative;
+            top: 0.12em;
+            flex-shrink: 0;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-top: 0;
+        }
+
+        /* Syntax Highlighter Block */
+        .syntax-box {
+            background: #1A202C;
+            border-radius: 12px;
+            padding: 1.8rem 1.8rem;
+            overflow-x: auto;
+            color: #E2E8F0;
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2), 0 16px 32px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-variant-ligatures: none;
+        }
+
+        .syntax-box .keyword {
+            color: #F6AD55;
+        }
+
+        .syntax-box .entity {
+            color: #63B3ED;
+        }
+
+        .syntax-box .prop {
+            color: #9AE6B4;
+        }
+
+        .syntax-box .comment {
+            color: #A0AEC0;
+            font-style: italic;
+        }
+
+        .proof-kicker {
+            font-family: var(--font-mono);
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .proof-note {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .section-intro {
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .section-intro h2 {
+            font-size: 2.8rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-intro p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .command-box {
+            margin-top: 2rem;
+        }
+
+        footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 6rem 1.5rem;
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .diagonal-slice {
+                display: none;
+            }
+
+            .hero-syntax-melt {
+                background: var(--nav-bg) !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2), 0 16px 32px rgba(0, 0, 0, 0.08) !important;
+                padding: 1.5rem !important;
+            }
+
+            .hero {
+                padding-top: 4rem;
+            }
+
+            .nav-container {
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                gap: 0.75rem;
+            }
+
+            .hero-visuals {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .indent-logic-block {
+                padding-left: 1rem !important;
+            }
+
+            .hero-img {
+                max-width: 100%;
+            }
+
+            .split-section {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .mobile-text-first>div:nth-child(2) {
+                grid-row: 1;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .code-preview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .code-preview-pane {
+                height: 34rem;
+            }
+
+            .list-stack p {
+                padding-left: 0;
+                margin-top: 0.5rem;
+            }
+
+            .section-wrapper {
+                padding: 4rem 0;
+            }
+
+            .intent-hero-stat {
+                font-size: 4rem;
+            }
+
+            .intent-cards {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        /* Intent Section — dark cinematic block */
+        .bg-intent {
+            background: var(--nav-bg);
+            background-image:
+                radial-gradient(ellipse 80% 60% at 20% 100%, rgba(255, 209, 102, 0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 85% 10%, rgba(88, 166, 255, 0.08) 0%, transparent 50%);
+            border-top: none;
+            border-bottom: none;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .intent-hero-stat {
+            font-family: var(--font-heading);
+            font-size: clamp(4rem, 10vw, 7rem);
+            font-weight: 700;
+            line-height: 1;
+            color: var(--highlight-yellow);
+            letter-spacing: -0.03em;
+        }
+
+        .intent-hero-stat small {
+            display: block;
+            font-size: 1.3rem;
+            font-weight: 400;
+            font-family: var(--font-mono);
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0;
+            margin-top: 0.5rem;
+        }
+
+        .intent-tagline {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+            max-width: 560px;
+        }
+
+        .bg-intent .highlight {
+            color: var(--highlight-yellow);
+        }
+
+        .bg-intent .highlight::after {
+            display: none;
+        }
+
+        .intent-sub {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.55);
+            max-width: 520px;
+            line-height: 1.7;
+        }
+
+        .intent-top {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .intent-top {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+            .intent-top > div { justify-items: center; display: grid; }
+        }
+
+        .intent-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .intent-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 2rem 1.6rem;
+            transition: transform 0.25s, border-color 0.25s;
+        }
+
+        .intent-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--highlight-yellow);
+        }
+
+        .intent-card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .intent-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            color: #fff;
+            margin-bottom: 0.6rem;
+            line-height: 1.25;
+        }
+
+        .intent-card p {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 0.97rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1100px) {
+            .intent-cards { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="images/logo-dark.svg" alt="ModelHike Logo" width="56" height="51" style="display:block; border-radius: 10px;">
+                <span>Model<span style="color: rgb(182,151,71);">Hike</span></span>
+            </a>
+            <nav class="nav-links" aria-label="Primary">
+                <a href="#code-preview" class="nav-link">How it works</a>
+                <a href="#why-not-specs" class="nav-link">Why not specs?</a>
+                <a href="#not-mda" class="nav-link">Why not UML?</a>
+                <a href="https://github.com/modelhike/modelhike" class="nav-link">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <div class="section-wrapper hero-bg" style="padding-top: 1rem; padding-bottom: 1rem;">
+            <div class="diagonal-slice"></div>
+            <section class="container hero" style="padding-top: 3rem; padding-left: 1.5rem; padding-right: 1.5rem; position: relative; z-index: 2;">
+                <div class="hero-visuals">
+                    <!-- Syntax Example -->
+                    <pre class="syntax-box hero-syntax-melt"><span class="comment"># Built for AI to write, designed for Humans to read.</span>
+<span class="keyword">===</span> Flight Module <span class="keyword">===</span>
+
+<span class="entity">Flight</span>
+============
+<span class="keyword">**</span> <span class="prop">id</span> : ID
+<span class="keyword">*</span> <span class="prop">arrival Station</span> : Reference@Station
+<span class="keyword">-</span> <span class="prop">aslot</span> : String
+<span class="keyword">-</span> <span class="prop">arrival Status</span> : String
+<span class="keyword">*</span> <span class="prop">flight Key</span> : String
+
+<span class="keyword">~</span> <span class="prop">getPilotLevel</span>(empId: Int) : String
+<span class="comment">```</span>
+<span class="keyword">|&gt;</span> DB Employee
+<span class="keyword">|&gt;</span> WHERE e -&gt; e.id == empId
+<span class="keyword">|&gt;</span> FIRST
+<span class="keyword">|&gt;</span> LET emp = _
+
+<span class="keyword">|&gt;</span> IF emp.years &lt; 5
+<span class="keyword">|</span> return "Mid-Level"
+<span class="keyword">|&gt;</span> ELSE
+<span class="keyword">|</span> return "Senior"
+<span class="comment">```</span>
+
+<span class="comment"># APIs ["/flight"]</span>
+<span class="keyword">@</span> apis:: create, delete, list, get-by-id
+<span class="keyword">##</span> list by arrival Station
+<span class="comment">#</span></pre>
+
+                    <!-- Right Column: CTA tightly coupled -->
+                    <div style="display: flex; flex-direction: column; justify-content: center;">
+                        <div class="hero-action-block" style="align-items: flex-start; text-align: left;">
+                            <h1
+                                style="font-size: clamp(2.2rem, 8vw, 3.2rem); margin-bottom: 3rem; line-height: 1.05; color: var(--text-primary); margin-top: -0.5rem; text-align: left;">
+                                <span style="display:block; white-space:normal;">Software should not <span
+                                        class="highlight">surprise</span> you</span>
+                                <span
+                                    style="display:block; font-size:1.8rem; font-weight:700; font-family:var(--font-heading); color:var(--text-primary); opacity:0.8; margin-top:0.8rem;">when
+                                    AI accelerates code change.</span>
+                            </h1>
+
+                            <div class="indent-logic-block"
+                                style="padding-left: 2rem; border-left: 3px solid var(--highlight-yellow);">
+                                <h3
+                                    style="font-size: 1.05rem; margin-bottom: 0.5rem; font-family: var(--font-mono); color: var(--text-primary); font-weight: 700; line-height: 1.6;">
+                                    [!] Declare intent once. Transpile it repeatably.</h3>
+                                <p
+                                    style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 2rem; max-width: 100%; font-family: var(--font-mono); line-height: 1.8;">
+                                    > Express architecture, modules, APIs, entities, DTOs and code logic in one DSL.<br>
+                                    > ModelHike transpiles that declaration into clean source code your
+                                    team can understand and own.
+                                </p>
+                                <div class="hero-cta-row">
+
+                                    <a href="show-me-the-code.html" class="btn btn-outline"
+                                        style="padding: 0.8rem 1.6rem; font-size: 1rem;">Show me the output</a>
+                                    <a href="https://github.com/modelhike/modelhike" class="btn btn-github"
+                                        style="padding: 0.8rem 1.6rem; font-size: 1rem;">Start
+                                        Declaring Apps</a>
+                                </div>
+                                <p class="proof-note">Transpiles to NestJS and Spring Boot monorepos today.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Intent Section -->
+        <div class="section-wrapper bg-intent">
+            <section class="container">
+                <div class="intent-top">
+                    <div>
+                        <span class="intent-hero-stat" data-count-to="500">0</span>
+                        <small style="font-size:1.15rem; color:rgba(255,255,255,0.45); font-family:var(--font-mono);">source files &middot; under one second</small>
+                    </div>
+                    <div>
+                        <h2 class="intent-tagline">Stop staring at the <span class="highlight">source code</span></h2>
+                        <p class="intent-sub" style="margin-top: 1rem;">If you only review the generated source, you are inspecting the wrong layer. When AI is doing the coding, humans should be doing the thinking, not proofreading it.</p>
+                    </div>
+                </div>
+
+                <div class="intent-cards">
+                    <div class="intent-card">
+                        <span class="intent-card-icon">&#x1F4CE;</span>
+                        <h3>Source code is evidence</h3>
+                        <p>The generated source proves a decision was made. The decision itself — the intent — is the product.</p>
+                    </div>
+                    <div class="intent-card">
+                        <span class="intent-card-icon">&#x1F3AF;</span>
+                        <h3>Typing speed is irrelevant</h3>
+                        <p>The scarce resources are now product taste, direction, system design, human trust, and conviction about what to build next.</p>
+                    </div>
+                    <div class="intent-card">
+                        <span class="intent-card-icon">&#x1F9E0;</span>
+                        <h3>Clear thinking matters more</h3>
+                        <p>Faster agents don't remove the need for thinking — they raise the cost of unclear thinking.</p>
+                    </div>
+                    <div class="intent-card">
+                        <span class="intent-card-icon">&#x26A1;</span>
+                        <h3>When speed matters, use Modelhike</h3>
+                        <p>A coding AI generates files one at a time and still drifts. ModelHike deterministically emits more than 500 source files in under a second.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Before / After (loaded from demo-data via fetch) -->
+        <div class="section-wrapper bg-proof" id="code-preview">
+            <section class="container" id="mh-code-preview">
+                <div class="section-header" style="text-align: center;">
+                    <p style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-coral); margin-bottom: 0.75rem; font-weight: 600;">See it in action</p>
+                    <h2>From declaration to <span class="highlight">source</span></h2>
+                    <p style="color: var(--text-secondary); font-size: 1.05rem; max-width: 680px; margin: 0 auto;">One declaration transpiles into a full Spring Boot project — Gradle, config, Java sources, GraphQL, and HTTP samples.</p>
+                </div>
+
+                <div class="code-preview-grid">
+                    <div class="code-preview-pane">
+                        <div class="code-preview-pane-header">
+                            <span class="code-preview-badge" data-mh-preview-badge="model">Model</span>
+                            <span data-mh-preview-title="model">Loading…</span>
+                        </div>
+                        <pre><code data-mh-preview-body="model"></code></pre>
+                    </div>
+                    <div class="code-preview-pane">
+                        <div class="code-preview-pane-header">
+                            <span class="code-preview-badge" data-mh-preview-badge="output">Generated</span>
+                            <span data-mh-preview-output-summary>Loading…</span>
+                        </div>
+                        <div class="code-preview-output-body">
+                            <div class="code-preview-file-list-wrap" data-mh-preview-output-list-wrap hidden>
+                                <ul class="code-preview-file-list" data-mh-preview-output-list></ul>
+                            </div>
+                            <p class="code-preview-output-empty" data-mh-preview-output-empty hidden>No generated files
+                                listed in the manifest.</p>
+                            <div class="code-preview-output-preview-wrap" data-mh-output-preview-wrap hidden>
+                                <p class="code-preview-output-preview-label" data-mh-output-preview-label></p>
+                                <pre class="code-preview-output-preview-pre"><code data-mh-output-preview-body></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="code-preview-error" data-mh-preview-error hidden></p>
+                <div class="code-preview-foot">To view full output, 
+                    <a href="show-me-the-code.html">Open full IDE-style explorer →</a>
+                </div>
+            </section>
+        </div>
+
+        <!-- Problem Section 1: The Trap -->
+        <div class="section-wrapper bg-problem" id="why-not-specs">
+            <section class="container split-section mobile-text-first">
+                <div>
+                    <img src="images/problem.png" alt="Robot confused by ambiguous specs" class="split-img" loading="lazy">
+                </div>
+                <div>
+                    <div class="section-header" style="text-align: left;">
+                        <p style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-coral); margin-bottom: 0.75rem; font-weight: 600;">The problem</p>
+                        <h2>The <span class="highlight">Spec-Driven</span> Trap</h2>
+                        <p style="color: var(--text-secondary); font-size: 1.05rem; margin-top: 0.5rem;">Generating production code from plain-English specs is fundamentally unstable.</p>
+                    </div>
+                    <div class="list-stack" style="margin-top: 2rem; gap: 1.5rem;">
+                        <div style="border-left: 3px solid var(--accent-coral); padding-left: 1.2rem;">
+                            <h3 style="font-size: 1.2rem;">Ambiguous</h3>
+                            <p style="color: var(--text-secondary); padding-left: 0;">Natural language leaves room for interpretation. If implementation details are still debatable, the foundation is already weak.</p>
+                        </div>
+                        <div style="border-left: 3px solid var(--accent-coral); padding-left: 1.2rem;">
+                            <h3 style="font-size: 1.2rem;">Unpredictable</h3>
+                            <p style="color: var(--text-secondary); padding-left: 0;">Prompt-based generation drifts. The same spec can produce different code paths, assumptions, and edge-case handling.</p>
+                        </div>
+                        <div style="border-left: 3px solid var(--accent-coral); padding-left: 1.2rem;">
+                            <h3 style="font-size: 1.2rem;">Bottlenecked</h3>
+                            <p style="color: var(--text-secondary); padding-left: 0;">Senior engineers end up babysitting code they did not design, reviewing machine guesses instead of business logic.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Problem Section 2: Code Review Hell -->
+        <div class="section-wrapper bg-problem">
+            <section class="container">
+                <div class="section-header" style="text-align: center;">
+                    <p style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-coral); margin-bottom: 0.75rem; font-weight: 600;">The cost</p>
+                    <h2>Escaping <span class="highlight">Code Review Hell</span></h2>
+                    <p style="color: var(--text-secondary); font-size: 1.05rem; max-width: 600px; margin: 0 auto;">Non-deterministic generation makes code review the real delivery bottleneck.</p>
+                </div>
+
+                <div class="cards-grid" style="margin-top: 3rem;">
+                    <div class="card" style="border-top: 3px solid var(--accent-coral);">
+                        <h3 style="font-size: 1.2rem;">Context Loss</h3>
+                        <p>Senior devs spend more time decoding generated complexity than reviewing clear domain intent.</p>
+                    </div>
+                    <div class="card" style="border-top: 3px solid var(--accent-coral);">
+                        <h3 style="font-size: 1.2rem;">Illusion of Speed</h3>
+                        <p>Writing a loose spec is fast. Debugging the edge cases the generator inferred incorrectly is not.</p>
+                    </div>
+                    <div class="card" style="border-top: 3px solid var(--accent-coral);">
+                        <h3 style="font-size: 1.2rem;">Trust Decay</h3>
+                        <p>When the generation step is not repeatable, every output must be reviewed line by line. Trust disappears fast.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Solution Section -->
+        <div class="section-wrapper bg-intent">
+            <section class="container split-section" style="align-items: start;">
+                <div>
+                    <div class="section-header" style="text-align: left;">
+                        <p style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--highlight-yellow); margin-bottom: 0.75rem; font-weight: 600;">The answer</p>
+                        <h2 style="color: #fff;"><span style="color: var(--highlight-yellow);">Declarative Apps</span> Paradigm</h2>
+                        <p style="color: rgba(255,255,255,0.55); font-size: 1.05rem; margin-top: 0.5rem;">Declare the app in a DSL. Transpile it into a production codebase. Same input, same output, every time.</p>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2.5rem;">
+                        <div style="border-left: 3px solid var(--highlight-yellow); padding-left: 1.2rem;">
+                            <h3 style="font-size: 1.2rem; color: #fff;">Declare, Don't Describe</h3>
+                            <p style="color: rgba(255,255,255,0.55);">Stop describing your app in English and hoping AI interprets it correctly. Declare it precisely in a DSL designed for that purpose.</p>
+                        </div>
+                        <div style="border-left: 3px solid var(--highlight-yellow); padding-left: 1.2rem;">
+                            <h3 style="font-size: 1.2rem; color: #fff;">Transpile, Don't Generate</h3>
+                            <p style="color: rgba(255,255,255,0.55);">The same declaration always produces the same output. No inference, no drift, no surprises.</p>
+                        </div>
+                        <div style="border-left: 3px solid var(--highlight-yellow); padding-left: 1.2rem;">
+                            <h3 style="font-size: 1.2rem; color: #fff;">AI in the Loop</h3>
+                            <p style="color: rgba(255,255,255,0.55);">AI in your editor authors and refines the declaration. The transpiler handles the rest — grounded, repeatable, and reviewable.</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <img src="images/solution_punchy.png" alt="Deterministic transpiler machine producing service outputs" class="split-img" loading="lazy" style="border-color: rgba(255,255,255,0.15); mix-blend-mode: normal; filter: none; opacity: 0.85;">
+                </div>
+            </section>
+        </div>
+
+        <!-- Not UML / MDA Section -->
+        <div class="section-wrapper bg-comparison" id="not-mda">
+            <section class="container">
+                <div class="section-header" style="text-align: center;">
+                    <p style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-secondary); margin-bottom: 0.75rem; font-weight: 600;">FAQ</p>
+                    <h2>Not your grandfather's <span class="highlight">model-driven</span> development</h2>
+                    <p style="color: var(--text-secondary); font-size: 1.05rem; max-width: 660px; margin: 0 auto;">UML and MDA promised this in the 2000s. ModelHike is built on fundamentally different principles.</p>
+                </div>
+
+                <div class="cards-grid cards-grid--four" style="margin-top: 3rem;">
+                    <div class="card" style="border-left: 3px solid var(--highlight-yellow);">
+                        <h3 style="font-size: 1.15rem;">Built for the AI era</h3>
+                        <p>AI authors the declaration. The transpiler guarantees the output. A division of labour that actually works.</p>
+                    </div>
+                    <div class="card" style="border-left: 3px solid var(--highlight-yellow);">
+                        <h3 style="font-size: 1.15rem;">No drag and drop</h3>
+                        <p>Plain text in your editor — not a diagram canvas. Version-controlled alongside your code.</p>
+                    </div>
+                    <div class="card" style="border-left: 3px solid var(--highlight-yellow);">
+                        <h3 style="font-size: 1.15rem;">No abstract metamodels</h3>
+                        <p>The DSL maps to real engineering structures — entities, APIs, services, logic. Nothing abstract.</p>
+                    </div>
+                    <div class="card" style="border-left: 3px solid var(--highlight-yellow);">
+                        <h3 style="font-size: 1.15rem;">No lock-in</h3>
+                        <p>No proprietary runtime. The transpiled code runs on standard tooling you already know.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Escape Hatch Section -->
+        <div class="section-wrapper bg-ownership">
+            <section class="container">
+                <div class="section-header" style="text-align: center;">
+                    <p style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-secondary); margin-bottom: 0.75rem; font-weight: 600;">No lock-in</p>
+                    <h2>The output is yours. <span class="highlight">Always.</span></h2>
+                    <p style="color: var(--text-secondary); font-size: 1.05rem; max-width: 660px; margin: 0 auto;">ModelHike creates a codebase, not a cage. Engineers stay in full control.</p>
+                </div>
+
+                <div class="split-section" style="margin-top: 3rem; align-items: flex-start;">
+                    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <div style="border-left: 3px solid var(--highlight-yellow); padding-left: 1.2rem;">
+                            <h3 style="font-size: 1.2rem;">Edit the output directly</h3>
+                            <p style="color: var(--text-secondary);">The output is clean, idiomatic source code — not a generated artifact you're afraid to touch.</p>
+                        </div>
+                        <div style="border-left: 3px solid var(--highlight-yellow); padding-left: 1.2rem;">
+                            <h3 style="font-size: 1.2rem;">Let AI close the loop</h3>
+                            <p style="color: var(--text-secondary);">Use the ModelHike MCP extension in your editor to reverse-engineer changes back into the declaration — so the next transpile reflects your intent.</p>
+                        </div>
+                        <div style="border-left: 3px solid var(--highlight-yellow); padding-left: 1.2rem;">
+                            <h3 style="font-size: 1.2rem;">Evolve the system over time</h3>
+                            <p style="color: var(--text-secondary);">Declaration, blueprint, and output stay in sync — not by locking you in, but by giving you the tools to keep them aligned.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <pre class="syntax-box" style="height: 100%"><span class="comment"># 1. Transpile the declaration</span>
+modelhike generate --input app.modelhike \
+  --blueprint api-nestjs-monorepo \
+  --output ./src
+
+<span class="comment"># 2. Edit the output directly</span>
+<span class="keyword">code</span> <span class="prop">./src/orders/orders.service.ts</span>
+
+<span class="comment"># 3. In your AI editor, prompt:</span>
+<span class="keyword">&gt;</span> "Update the ModelHike declaration and blueprint
+   (if needed) to reflect the changes I made in
+   orders.service.ts"</pre>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <img src="images/logo-dark.svg" alt="ModelHike Logo" width="120" height="110" style="display:block; margin: 0 auto 2rem; border-radius: 24px;">
+            <h2 style="font-family: var(--font-heading); margin-bottom: 1rem; font-size: 2.5rem;">Ready to escape code
+                review hell?</h2>
+            <p style="color: #A0AEC0; font-size: 1.1rem; margin-bottom: 2.5rem;">Declare the app once. Let Modelhike transpile
+                clean, reviewable source code.</p>
+            <a href="https://github.com/modelhike/modelhike" class="btn btn-github"
+                style="background: white; color: var(--text-primary); border: none; padding: 1rem 2rem; font-size: 1.05rem;">
+                <svg height="20" fill="currentColor" viewBox="0 0 16 16" width="20">
+                    <path
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                    </path>
+                </svg>
+                View on GitHub
+            </a>
+
+            <p style="margin-top: 4rem; color: rgba(255,255,255,0.3); font-size: 0.85rem;">
+                &copy; 2026 ModelHike. A deterministic Declarative App Transpiler.
+            </p>
+        </div>
+    </footer>
+
+    <script src="demo/code-viewer.js?v=4"></script>
+    <script>
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        ModelHikeDemo.initHomepagePreview({ manifestUrl: 'demo-data/airport/manifest.json' });
+
+        /* Animated counter for the intent section */
+        (function () {
+            const el = document.querySelector('[data-count-to]');
+            if (!el) return;
+            const target = +el.dataset.countTo;
+            const duration = 1400;
+            let started = false;
+
+            function animate(ts, start) {
+                const elapsed = ts - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const ease = 1 - Math.pow(1 - progress, 3);
+                el.textContent = Math.round(ease * target);
+                if (progress < 1) requestAnimationFrame(t => animate(t, start));
+            }
+
+            const obs = new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting && !started) {
+                    started = true;
+                    requestAnimationFrame(t => animate(t, t));
+                    obs.disconnect();
+                }
+            }, { threshold: 0.3 });
+            obs.observe(el);
+        })();
+    </script>
+</body>
+
+</html>

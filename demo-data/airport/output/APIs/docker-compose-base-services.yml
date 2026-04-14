@@ -1,0 +1,24 @@
+version: '2.1'
+
+services:
+  flightmodule:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - APP_DIR=apps/flightmodule/src
+    ports:
+      - '4001:4001'
+    mem_limit: 512m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_CONFIG_LOCATION=file:/config-repo/application.yml,file:/config-repo/product.yml
+      - SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE=admin
+      - SPRING_DATA_MONGODB_USERNAME=${MONGODB_USR}
+      - SPRING_DATA_MONGODB_PASSWORD=${MONGODB_PWD}
+      - SERVICE_NAME: flightmodule
+      - LOG_LEVEL: ${LOG_LEVEL}
+      - LOG_REQUEST: ${LOG_REQUEST}
+    restart: on-failure
+
+

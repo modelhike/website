@@ -1,0 +1,39 @@
+// Built for AI to write, designed for Humans to read.
+====
+APIs #blueprint(api-springboot-monorepo)
+====
++ Flight Module
+
+=== Flight Module ====
+
+Flight
+==============
+** id : ID
+* arrival Station : Reference@Station
+- aslot : String
+- arrival Status : String
+* flight Key : String
+
+getPilotLevel(empId: Int) : String
+-------------------------------------
+|> DB Employee
+|> WHERE e -> e.id == empId
+|> FIRST
+|> LET emp = _
+
+|> IF emp.years < 5
+| return "Mid-Level"
+|> ELSE
+| return "Senior"
+---
+
+
+# APIs ["/flight"]
+@ apis:: create, delete, list, get-by-id
+## list by arrival Station
+#
+
+Station
+==============
+** id : ID
+* code : String
