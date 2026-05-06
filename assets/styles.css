@@ -1052,6 +1052,10 @@ main > .rule { display: none; }
 .cta-band__inner {
   max-width: 900px;
 }
+.cta-band__logo {
+  margin-bottom: 24px;
+  margin-inline: auto;
+}
 .cta-band h2 {
   font-family: var(--serif);
   font-size: clamp(26px, 3.6vw, 44px);

@@ -23,7 +23,7 @@ Update this file whenever `index.html` copy changes.
 
 # Diff the why, not the what.
 
-ModelHike is the intent compiler for the AI era. Generate system diagrams and production-ready code from a single declarative intent.
+ModelHike is the intent compiler for the AI era. Spec-driven development has the right intent, but the wrong implementation.
 
 `$ npx modelhike demo` · `▶ Watch it work`
 
