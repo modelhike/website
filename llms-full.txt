@@ -1,0 +1,198 @@
+# ModelHike — Full marketing copy for LLM ingestion
+
+> Category: Intent compiler
+> Slogan: Diff the why, not the what.
+> Hero: AI is stealing your time. Diff the why, not the what.
+> Technical positioning: Intent-native, not prompt-guessed.
+> Manifesto: Code is downstream.
+> Quick start: `npx modelhike demo`
+> Targets today: NestJS (TypeScript), Spring Boot (Java)
+> Output license: MIT
+> Source of truth: a `.modelhike` declaration round-tripped via MCP
+
+---
+
+## 1. Hero
+
+**AI is stealing your time. Diff the why, not the what.**
+
+ModelHike is the intent compiler. You write twenty lines of *why*. It compiles five hundred files of *what*. Same declaration, same code. Forever.
+
+CTA: `npx modelhike demo` · Watch the 30-second transpile.
+
+---
+
+## 2. The bill — last week, itemized
+
+- 6h reviewing AI code you can't interrogate.
+- 4h re-prompting drift you caught at review.
+- 3h chasing a bug across files three sessions wrote together.
+- 2h debugging a regression in a file you never opened.
+
+**15 hours. Paid in attention. Billed to no one.**
+
+---
+
+## 3. The law
+
+**Human attention is the scarce resource now.**
+
+Code is abundant. AI makes more of it every second. Human attention didn't scale. It can't.
+
+The less review surface, the better.
+
+So the source of truth has to move up. Code stays where it belongs. Underneath.
+
+**Code is downstream now.**
+
+---
+
+## 4. The move — diff the why, not the what
+
+You write the why. Twenty lines.
+ModelHike compiles the what. Five hundred files.
+You diff what you wrote. Not what fell out.
+
+Example declaration (`booking.modelhike`):
+
+```
+Booking
+==========
+** id     : ID
+*  user   : Reference@User
+-  status : String
+*  total  : Decimal
+
+~ cancel(id: Int) : String
+|> DB Booking WHERE b -> b.id == id
+|> IF b.status == "confirmed"
+|   UPDATE b.status = "cancelled"
+|   return "cancelled"
+
+@ apis :: create, cancel, list
+```
+
+The why is yours. The what is automatic.
+
+---
+
+## 5. Intent-native, not prompt-guessed
+
+**Prompts guess. Compilers don't.**
+
+- Prompt the same AI twice → two different codebases → two different bugs.
+- Compile the same intent twice → the same code, forever.
+
+That's not a tooling preference. It's the line between *hoping* and *shipping*.
+
+**Intent-native. Not prompt-guessed.**
+
+---
+
+## 6. You stay a developer
+
+**Still the developer. Just not the typist.**
+
+You still design. You still hit flow. You still ship at 4pm.
+You stop typing what the machine can type. You stop reading what the machine already wrote.
+
+**The machine writes the code. You write the truth.**
+
+---
+
+## 7. The output is yours
+
+**No runtime. No lock-in. No cage.**
+
+- Clean source. MIT-licensed. Edit when you need to.
+- Pull edits back into the intent through the MCP. The next compile reflects what you meant.
+- Walk away tomorrow. You keep a working codebase in a framework your team already knows.
+
+---
+
+## 8. The spec-driven trap
+
+**Spec-driven has the right intent and the wrong implementation.**
+
+Every other AI coding tool is intent-guessed. Prose in. LLM guess out. Different every time. Three flaws, compounding:
+
+### 1. The spec is English. English is ambiguous.
+
+You write "the booking should be cancellable." The AI reads "cancellable by whom, under what conditions, with what side effects." It picks one interpretation. Wrong sometimes. You won't know which until production breaks.
+
+A spec is a wish. A declaration is a contract.
+
+### 2. The AI is non-deterministic. The output drifts every run.
+
+Same prompt, same spec, same model. Two different codebases. Two different bugs.
+
+You can't audit what you can't reproduce. You can't ship what you can't audit.
+
+### 3. The human is in the loop. The loop is the bottleneck.
+
+Spec-driven puts a human in front of every generated diff. Five hundred files of AI output, reviewed line by line, by an exhausted senior at 4:47pm Friday.
+
+That's not a workflow. That's a tax on shipping.
+
+### ModelHike fixes all three
+
+- **Declaration, not prose.** A `.modelhike` file has grammar and types. No interpretation. No ambiguity.
+- **Compilation, not generation.** Same declaration twice produces the same code. Forever. Auditable. Reproducible. Shippable.
+- **Review at intent, not implementation.** You diff 20 lines of why, not 500 files of what. The loop tightens to where review is cheap.
+
+**Intent-native. Not prompt-guessed.**
+
+---
+
+## 9. Field reports (testimonials)
+
+- A staff engineer who migrated 340 stored procedures in 6 weeks instead of 19.
+- A principal engineer running a 20-service platform from one declaration.
+- A founder who turned 3-week consulting projects into 3-day projects.
+- A senior engineer who quit babysitting AI agents.
+- A CTO who promoted code review out of existence.
+
+---
+
+## 10. Get started
+
+```
+npx modelhike demo
+```
+
+Thirty seconds. Command to running backend. No account.
+
+Links: GitHub · Docs · Discord
+
+---
+
+## FAQ
+
+**Isn't this just MDA / UML repackaged?**
+UML promised this in 2005 and failed. The reason: humans had to author the model by hand, and that was slower than writing code. The labor never paid back. AI authors the declaration in ModelHike. The labor problem is dead. What's left is determinism, which is the part that ships.
+
+**How is this different from spec-driven dev?**
+Specs describe. Declarations compile. Same input twice in spec-driven gets you two codebases. Same input twice in ModelHike gets you the same code. Forever.
+
+**What about agent frameworks like LangGraph?**
+Different layer. Agent frameworks help the AI act. ModelHike makes the AI's output deterministic. Use both.
+
+**What if I want to edit the generated code?**
+Edit it. Then tell your AI editor to pull the change back into the declaration through the MCP. The declaration stays the source of truth. The code stays editable. Both stay in sync.
+
+**Is the DSL hard to learn?**
+If you've written a schema or a route definition, you know 80% of it. Most developers are fluent in an afternoon.
+
+**What languages and frameworks does it support?**
+NestJS and Spring Boot monorepos today. More blueprints shipping. The DSL is target-agnostic by design.
+
+**Is this a code generator?**
+No. Code generators are non-deterministic. Same input can produce different output depending on the model, the prompt, the weather. ModelHike is a compiler. Same input always produces the same output.
+
+---
+
+## Footer
+
+*Diff the why, not the what.*
+
+ModelHike. The intent compiler.

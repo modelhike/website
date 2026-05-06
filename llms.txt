@@ -1,0 +1,48 @@
+# ModelHike
+
+> The intent compiler. You write twenty lines of *why*. ModelHike compiles five hundred files of *what*. Same declaration, same code. Forever. Intent-native, not prompt-guessed.
+
+ModelHike is a deterministic compiler for backend systems. Developers (or their AI assistants) author a `.modelhike` declaration — a typed, grammar-checked description of intent. The compiler emits a working backend (NestJS or Spring Boot today) from that declaration. The same declaration always produces the same code. Edits made downstream can be pulled back into the declaration via the MCP, keeping intent and implementation in lockstep.
+
+## Core ideas
+
+- **Intent compiler, not code generator.** Code generators are non-deterministic. Compilers aren't.
+- **Diff the why, not the what.** Review 20 lines of declaration, not 500 files of output.
+- **Declaration, not prose.** A `.modelhike` file has grammar and types. No interpretation. No ambiguity.
+- **Code is downstream now.** Human attention is the scarce resource; the source of truth has to move up.
+- **No runtime, no lock-in.** Output is plain MIT-licensed source in a framework your team already knows.
+
+## Quick start
+
+- `npx modelhike demo` — 30 seconds, command to running backend, no account required.
+
+## Site map
+
+- [Home](https://modelhike.com/): hero, manifesto, demo, FAQ
+- [Site copy (markdown)](https://modelhike.com/index.md): full marketing copy (companion to index.html)
+- [llms-full.txt](https://modelhike.com/llms-full.txt): full marketing copy in LLM-ingestion format
+- [GitHub](https://github.com/modelhike): source and blueprints
+- [Discord](https://discord.gg/modelhike): community
+
+## How it differs from spec-driven AI tools
+
+| Concern              | Spec-driven                 | ModelHike                  |
+|----------------------|-----------------------------|----------------------------|
+| Input                | English prose               | Typed declaration          |
+| Determinism          | None — output drifts        | Same input, same output    |
+| Review surface       | Hundreds of generated files | ~20 lines of intent        |
+| Editing the output   | Becomes drift               | Round-trips through MCP    |
+| Lock-in              | Often runtime-bound         | Plain MIT source           |
+
+## Supported targets
+
+- NestJS monorepo (TypeScript)
+- Spring Boot monorepo (Java)
+- The DSL is target-agnostic; more blueprints shipping.
+
+## Slogans (canonical)
+
+- Diff the why, not the what.
+- Intent-native, not prompt-guessed.
+- Code is downstream now.
+- The machine writes the code. You write the truth.
