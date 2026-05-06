@@ -117,8 +117,6 @@ Spec-driven puts a human in front of every generated diff. Five hundred files of
 
 *[Visual: confused robot beside broken generated documents — `assets/images/problem.png`]*
 
-> **Built for AI Agents:** AI writes the declaration. ModelHike compiles the code. Zero hallucinations. 100% deterministic.
-
 ---
 
 ## 5. The Answer — Intent-Native Development
@@ -127,7 +125,8 @@ Spec-driven puts a human in front of every generated diff. Five hundred files of
 
 ### Intent-Native Development
 
-ModelHike fixes all three, by moving up from source code to source intent.
+ModelHike fixes all three, by moving up from source code to source intent.<br />
+**Built for AI Agents:** 100% deterministic, zero hallucinations.
 
 **Declaration, not prose.**
 Stop describing your app in English and hoping AI interprets it correctly. Define your system architecture, APIs, and data models precisely in a unified DSL.
