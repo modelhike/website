@@ -23,8 +23,7 @@ Update this file whenever `index.html` copy changes.
 
 # Diff the why, not the what.
 
-ModelHike is the intent compiler. You write twenty lines of why.
-It compiles five hundred files of what. Same input, same output. No drift. Forever.
+ModelHike is the intent compiler for the AI era. Generate system diagrams and production-ready code from a single declarative intent.
 
 `$ npx modelhike demo` · `▶ Watch it work`
 
@@ -70,7 +69,7 @@ Declare the why. Let the compiler emit the what. Code stays where it belongs —
 
 ### Diff the why. Not the what.
 
-You write twenty lines. ModelHike compiles five hundred files. You diff what you wrote — not what fell out.
+You write twenty lines. ModelHike compiles five hundred files, within a second. You diff what you wrote — not what fell out.
 
 **Source — `booking.modelhike` (declaration, 18 lines · the why):**
 
@@ -118,6 +117,8 @@ Spec-driven puts a human in front of every generated diff. Five hundred files of
 
 *[Visual: confused robot beside broken generated documents — `assets/images/problem.png`]*
 
+> **Built for AI Agents:** AI writes the declaration. ModelHike compiles the code. Zero hallucinations. 100% deterministic.
+
 ---
 
 ## 5. The Answer — Intent-Native Development
@@ -129,7 +130,7 @@ Spec-driven puts a human in front of every generated diff. Five hundred files of
 ModelHike fixes all three, by moving up from source code to source intent.
 
 **Declaration, not prose.**
-Stop describing your app in English and hoping AI interprets it correctly. Declare it precisely in a DSL designed for that purpose.
+Stop describing your app in English and hoping AI interprets it correctly. Define your system architecture, APIs, and data models precisely in a unified DSL.
 
 **Compilation, not generation.**
 Same declaration twice produces the same code. Forever. Auditable. Reproducible. Shippable. No drift, no surprises.
@@ -271,6 +272,7 @@ If you've written a schema or a route definition, you know 80% of it. Most devel
 **What languages and frameworks does it support?**
 
 NestJS and Spring Boot monorepos today. More blueprints shipping. The DSL is target-agnostic by design.
+
 
 ---
 

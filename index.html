@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en" data-theme="light">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -7,7 +8,8 @@
   <meta name="theme-color" content="#ffffff" />
 
   <title>ModelHike — The intent compiler. Diff the why, not the what.</title>
-  <meta name="description" content="ModelHike is the intent compiler. You write 20 lines of why. It compiles 500 files of what. Same declaration, same code. Forever. Intent-native, not prompt-guessed." />
+  <meta name="description"
+    content="ModelHike is the intent compiler for the AI era. You write 20 lines of why. It compiles 500 files of what. Same declaration, same code. Forever. Intent-native, not prompt-guessed." />
 
   <link rel="canonical" href="https://modelhike.com/" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
@@ -18,7 +20,8 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://modelhike.com/" />
   <meta property="og:title" content="ModelHike — The intent compiler" />
-  <meta property="og:description" content="Diff the why, not the what. You write 20 lines. ModelHike compiles 500 files. Same input, same output. Forever." />
+  <meta property="og:description"
+    content="Diff the why, not the what. You write 20 lines. ModelHike compiles 500 files. Same input, same output. Forever." />
   <meta property="og:image" content="https://modelhike.com/assets/og.svg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -30,11 +33,13 @@
   <meta name="twitter:image" content="https://modelhike.com/assets/og.svg" />
 
   <meta name="author" content="ModelHike" />
-  <meta name="keywords" content="intent compiler, ModelHike, deterministic code generation, model-driven development, AI coding tools, NestJS, Spring Boot, DSL, MCP, declaration-driven development, spec-driven development alternative" />
+  <meta name="keywords"
+    content="intent compiler, ModelHike, deterministic code generation, model-driven development, AI coding tools, NestJS, Spring Boot, DSL, MCP, declaration-driven development, spec-driven development alternative" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" />
   <link rel="stylesheet" href="assets/styles.css" />
 
   <script>
@@ -90,13 +95,13 @@
           { "@type": "Question", "name": "What if I want to edit the generated code?", "acceptedAnswer": { "@type": "Answer", "text": "Edit it. Then tell your AI editor to pull the change back into the declaration through the MCP. The declaration stays the source of truth. The code stays editable. Both stay in sync." } },
           { "@type": "Question", "name": "Is the DSL hard to learn?", "acceptedAnswer": { "@type": "Answer", "text": "If you've written a schema or a route definition, you know 80% of it. Most developers are fluent in an afternoon." } },
           { "@type": "Question", "name": "What languages and frameworks does it support?", "acceptedAnswer": { "@type": "Answer", "text": "NestJS and Spring Boot monorepos today. More blueprints shipping. The DSL is target-agnostic by design." } },
-          { "@type": "Question", "name": "Is this a code generator?", "acceptedAnswer": { "@type": "Answer", "text": "No. Code generators are non-deterministic. ModelHike is a compiler. Same input always produces the same output." } }
         ]
       }
     ]
   }
   </script>
 </head>
+
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
@@ -106,7 +111,8 @@
     <div class="container nav__inner">
       <a href="index.html" class="brand" aria-label="ModelHike home">
         <svg class="brand__mark" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-          <path d="M3 18 L9 6 L12 12 L15 6 L21 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+          <path d="M3 18 L9 6 L12 12 L15 6 L21 18" fill="none" stroke="currentColor" stroke-width="1.6"
+            stroke-linejoin="round" stroke-linecap="round" />
         </svg>
         <span class="brand__name">ModelHike</span>
         <span class="brand__tag" aria-hidden="true">/ intent compiler</span>
@@ -132,8 +138,8 @@
         </h1>
 
         <p class="hero__sub" data-reveal>
-          ModelHike is the intent compiler. You write twenty lines of why.
-          It compiles five hundred files of what. Same input, same output. No drift. Forever.
+          ModelHike is the intent compiler for the AI era. Generate system diagrams and production-ready code from a
+          single declarative intent.
         </p>
 
         <div class="hero__cta" data-reveal>
@@ -142,7 +148,10 @@
             <span>npx modelhike demo</span>
           </a>
           <a href="#move" class="btn btn--ghost btn--lg">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              aria-hidden="true">
+              <polygon points="6 4 20 12 6 20 6 4" />
+            </svg>
             Watch it work
           </a>
         </div>
@@ -155,7 +164,8 @@
             <span class="terminal__dot" data-color="g"></span>
             <span class="terminal__title">~/booking-service · zsh</span>
           </div>
-          <pre class="terminal__body"><code id="terminal-stream"><span class="t-line">$ <span class="t-cmd">npx modelhike demo</span></span>
+          <pre
+            class="terminal__body"><code id="terminal-stream"><span class="t-line">$ <span class="t-cmd">npx modelhike demo</span></span>
 <span class="t-line"><span class="dim">→</span> reading <span class="info">booking.modelhike</span> <span class="dim">·  18 lines</span></span>
 <span class="t-line"><span class="dim">→</span> resolving types <span class="dim">·  Booking, User, Reservation</span></span>
 <span class="t-line"><span class="dim">→</span> compiling intent <span class="dim">·  blueprint = nestjs</span></span>
@@ -181,11 +191,13 @@
           <div class="output__features law__points">
             <div class="output__feature">
               <h3>Source code is evidence, not the decision</h3>
-              <p>The generated source only proves a decision was made. The decision itself — the intent — is what matters and what should be reviewed.</p>
+              <p>The generated source only proves a decision was made. The decision itself — the intent — is what
+                matters and what should be reviewed.</p>
             </div>
             <div class="output__feature">
               <h3>Clear thinking matters more</h3>
-              <p>Faster agents don't remove the need for thinking — they raise the cost of unclear thinking. Vague intent compounds into broken code at scale.</p>
+              <p>Faster agents don't remove the need for thinking — they raise the cost of unclear thinking. Vague
+                intent compounds into broken code at scale.</p>
             </div>
             <div class="output__feature">
               <h3>Move the source of truth up</h3>
@@ -194,7 +206,9 @@
           </div>
 
           <figure class="law__visual">
-            <img src="assets/images/rethink.png" alt="A developer standing above cascading source files, looking at the intent document through a telescope" loading="lazy" decoding="async" />
+            <img src="assets/images/rethink.png"
+              alt="A developer standing above cascading source files, looking at the intent document through a telescope"
+              loading="lazy" decoding="async" />
           </figure>
         </div>
 
@@ -213,7 +227,8 @@
         <header class="section-head">
           <span class="eyebrow">How it works</span>
           <h2 id="move-title">Diff the why. Not the what.</h2>
-          <p class="section-head__sub">You write twenty lines. ModelHike compiles five hundred files. You diff what you wrote — not what fell out.</p>
+          <p class="section-head__sub">You write twenty lines. ModelHike compiles five hundred files, within a second.
+            You diff what you wrote — not what fell out.</p>
         </header>
 
         <div class="move__grid">
@@ -221,7 +236,11 @@
           <article class="panel panel--code" data-reveal>
             <header class="panel__bar">
               <span class="panel__file">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                </svg>
                 booking.modelhike
               </span>
               <span class="panel__lang">declaration</span>
@@ -249,7 +268,10 @@
           <article class="panel panel--tree" data-reveal>
             <header class="panel__bar">
               <span class="panel__file">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  aria-hidden="true">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                </svg>
                 booking-service/
               </span>
               <span class="panel__lang">
@@ -257,42 +279,165 @@
               </span>
             </header>
             <ul class="tree" id="file-tree" role="tree" aria-label="Files emitted by the compiler">
-              <li><span class="indent"></span><svg class="ico ico--dir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>apps/</span></li>
-              <li><span class="indent">│  </span><svg class="ico ico--dir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>api/</span></li>
-              <li><span class="indent">│  │  </span><svg class="ico ico--dir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>src/</span></li>
-              <li><span class="indent">│  │  │  </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><text x="12" y="16" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text></svg><span>main.ts</span></li>
-              <li><span class="indent">│  │  │  </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><text x="12" y="16" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text></svg><span>app.module.ts</span></li>
-              <li><span class="indent">│  │  │  </span><svg class="ico ico--dir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>booking/</span></li>
-              <li><span class="indent">│  │  │  │  </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><text x="12" y="16" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text></svg><span>booking.module.ts</span><span class="badge-add">+ from intent</span></li>
-              <li><span class="indent">│  │  │  │  </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><text x="12" y="16" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text></svg><span>booking.controller.ts</span><span class="badge-add">+ from intent</span></li>
-              <li><span class="indent">│  │  │  │  </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><text x="12" y="16" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text></svg><span>booking.service.ts</span><span class="badge-add">+ from intent</span></li>
-              <li><span class="indent">│  │  │  │  </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><text x="12" y="16" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text></svg><span>booking.repository.ts</span><span class="badge-add">+ from intent</span></li>
-              <li><span class="indent">│  │  │  │  </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><text x="12" y="16" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text></svg><span>booking.entity.ts</span><span class="badge-add">+ from intent</span></li>
-              <li><span class="indent">│  │  │  │  </span><svg class="ico ico--dir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>dto/</span></li>
-              <li><span class="indent">│  │  │  │  │  </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><text x="12" y="16" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text></svg><span>create-booking.dto.ts</span></li>
-              <li><span class="indent">│  │  │  │  │  </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><text x="12" y="16" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text></svg><span>cancel-booking.dto.ts</span></li>
-              <li><span class="indent">│  │  │  │  │  </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><text x="12" y="16" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text></svg><span>list-booking.dto.ts</span></li>
-              <li><span class="indent">│  │  │  │  </span><svg class="ico ico--dir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>guards/</span></li>
-              <li><span class="indent">│  │  │  │  │  </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><text x="12" y="16" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text></svg><span>owner.guard.ts</span></li>
-              <li><span class="indent">│  │  │  │  </span><svg class="ico ico--dir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>pipes/</span></li>
-              <li><span class="indent">│  │  │  │  │  </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><text x="12" y="16" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text></svg><span>booking-id.pipe.ts</span></li>
-              <li><span class="indent">│  │  │  </span><svg class="ico ico--dir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>user/</span></li>
-              <li><span class="indent">│  │  │  │  </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><text x="12" y="16" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text></svg><span>user.module.ts</span></li>
-              <li><span class="indent">│  │  │  │  </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><text x="12" y="16" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text></svg><span>user.entity.ts</span></li>
-              <li><span class="indent"></span><svg class="ico ico--dir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>libs/</span></li>
-              <li><span class="indent">│  </span><svg class="ico ico--dir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>database/</span></li>
-              <li><span class="indent">│  │  </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><text x="12" y="16" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text></svg><span>data-source.ts</span></li>
-              <li><span class="indent">│  │  </span><svg class="ico ico--dir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>migrations/</span></li>
-              <li><span class="indent">│  │  │  </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><text x="12" y="16" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text></svg><span>1700000000000-init.ts</span></li>
-              <li><span class="indent"></span><svg class="ico ico--dir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>test/</span></li>
-              <li><span class="indent">│  </span><svg class="ico ico--test" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 2v6l-4 6a4 4 0 0 0 3.2 6.4h5.6A4 4 0 0 0 18 14l-4-6V2"/></svg><span>booking.e2e-spec.ts</span></li>
-              <li><span class="indent"></span><svg class="ico ico--cfg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>package.json</span></li>
-              <li><span class="indent"></span><svg class="ico ico--cfg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>tsconfig.json</span></li>
-              <li><span class="indent"></span><svg class="ico ico--cfg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>nest-cli.json</span></li>
-              <li><span class="indent"></span><svg class="ico ico--md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span>README.md</span></li>
+              <li><span class="indent"></span><svg class="ico ico--dir" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                </svg><span>apps/</span></li>
+              <li><span class="indent">│ </span><svg class="ico ico--dir" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                </svg><span>api/</span></li>
+              <li><span class="indent">│ │ </span><svg class="ico ico--dir" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                </svg><span>src/</span></li>
+              <li><span class="indent">│ │ │ </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor"
+                  aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2" /><text x="12" y="16" text-anchor="middle"
+                    font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text>
+                </svg><span>main.ts</span></li>
+              <li><span class="indent">│ │ │ </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor"
+                  aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2" /><text x="12" y="16" text-anchor="middle"
+                    font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text>
+                </svg><span>app.module.ts</span></li>
+              <li><span class="indent">│ │ │ </span><svg class="ico ico--dir" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                </svg><span>booking/</span></li>
+              <li><span class="indent">│ │ │ │ </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor"
+                  aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2" /><text x="12" y="16" text-anchor="middle"
+                    font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text>
+                </svg><span>booking.module.ts</span><span class="badge-add">+ from intent</span></li>
+              <li><span class="indent">│ │ │ │ </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor"
+                  aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2" /><text x="12" y="16" text-anchor="middle"
+                    font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text>
+                </svg><span>booking.controller.ts</span><span class="badge-add">+ from intent</span></li>
+              <li><span class="indent">│ │ │ │ </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor"
+                  aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2" /><text x="12" y="16" text-anchor="middle"
+                    font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text>
+                </svg><span>booking.service.ts</span><span class="badge-add">+ from intent</span></li>
+              <li><span class="indent">│ │ │ │ </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor"
+                  aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2" /><text x="12" y="16" text-anchor="middle"
+                    font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text>
+                </svg><span>booking.repository.ts</span><span class="badge-add">+ from intent</span></li>
+              <li><span class="indent">│ │ │ │ </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor"
+                  aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2" /><text x="12" y="16" text-anchor="middle"
+                    font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text>
+                </svg><span>booking.entity.ts</span><span class="badge-add">+ from intent</span></li>
+              <li><span class="indent">│ │ │ │ </span><svg class="ico ico--dir" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                </svg><span>dto/</span></li>
+              <li><span class="indent">│ │ │ │ │ </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor"
+                  aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2" /><text x="12" y="16" text-anchor="middle"
+                    font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text>
+                </svg><span>create-booking.dto.ts</span></li>
+              <li><span class="indent">│ │ │ │ │ </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor"
+                  aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2" /><text x="12" y="16" text-anchor="middle"
+                    font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text>
+                </svg><span>cancel-booking.dto.ts</span></li>
+              <li><span class="indent">│ │ │ │ │ </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor"
+                  aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2" /><text x="12" y="16" text-anchor="middle"
+                    font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text>
+                </svg><span>list-booking.dto.ts</span></li>
+              <li><span class="indent">│ │ │ │ </span><svg class="ico ico--dir" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                </svg><span>guards/</span></li>
+              <li><span class="indent">│ │ │ │ │ </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor"
+                  aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2" /><text x="12" y="16" text-anchor="middle"
+                    font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text>
+                </svg><span>owner.guard.ts</span></li>
+              <li><span class="indent">│ │ │ │ </span><svg class="ico ico--dir" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                </svg><span>pipes/</span></li>
+              <li><span class="indent">│ │ │ │ │ </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor"
+                  aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2" /><text x="12" y="16" text-anchor="middle"
+                    font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text>
+                </svg><span>booking-id.pipe.ts</span></li>
+              <li><span class="indent">│ │ │ </span><svg class="ico ico--dir" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                </svg><span>user/</span></li>
+              <li><span class="indent">│ │ │ │ </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor"
+                  aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2" /><text x="12" y="16" text-anchor="middle"
+                    font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text>
+                </svg><span>user.module.ts</span></li>
+              <li><span class="indent">│ │ │ │ </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor"
+                  aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2" /><text x="12" y="16" text-anchor="middle"
+                    font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text>
+                </svg><span>user.entity.ts</span></li>
+              <li><span class="indent"></span><svg class="ico ico--dir" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                </svg><span>libs/</span></li>
+              <li><span class="indent">│ </span><svg class="ico ico--dir" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                </svg><span>database/</span></li>
+              <li><span class="indent">│ │ </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor"
+                  aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2" /><text x="12" y="16" text-anchor="middle"
+                    font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text>
+                </svg><span>data-source.ts</span></li>
+              <li><span class="indent">│ │ </span><svg class="ico ico--dir" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                </svg><span>migrations/</span></li>
+              <li><span class="indent">│ │ │ </span><svg class="ico ico--ts" viewBox="0 0 24 24" fill="currentColor"
+                  aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2" /><text x="12" y="16" text-anchor="middle"
+                    font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" fill="#0a0a0a">TS</text>
+                </svg><span>1700000000000-init.ts</span></li>
+              <li><span class="indent"></span><svg class="ico ico--dir" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                </svg><span>test/</span></li>
+              <li><span class="indent">│ </span><svg class="ico ico--test" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M10 2v6l-4 6a4 4 0 0 0 3.2 6.4h5.6A4 4 0 0 0 18 14l-4-6V2" />
+                </svg><span>booking.e2e-spec.ts</span></li>
+              <li><span class="indent"></span><svg class="ico ico--cfg" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="12" cy="12" r="3" />
+                  <path
+                    d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z" />
+                </svg><span>package.json</span></li>
+              <li><span class="indent"></span><svg class="ico ico--cfg" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="12" cy="12" r="3" />
+                  <path
+                    d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z" />
+                </svg><span>tsconfig.json</span></li>
+              <li><span class="indent"></span><svg class="ico ico--cfg" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="12" cy="12" r="3" />
+                  <path
+                    d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z" />
+                </svg><span>nest-cli.json</span></li>
+              <li><span class="indent"></span><svg class="ico ico--md" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                </svg><span>README.md</span></li>
             </ul>
             <footer class="panel__foot">
-              <span class="panel__metric"><span class="dot dot--b"></span> <span id="file-count">142</span> files · the what</span>
+              <span class="panel__metric"><span class="dot dot--b"></span> <span id="file-count">142</span> files · the
+                what</span>
               <span class="panel__metric panel__metric--muted">deterministic · reproducible</span>
             </footer>
           </article>
@@ -312,14 +457,16 @@
         <header class="section-head">
           <span class="eyebrow">The spec-driven trap</span>
           <h2 id="trap-title">Spec-driven has the right intent and the wrong implementation.</h2>
-          <p class="section-head__sub">Every other AI coding tool is intent-guessed. Prose in. LLM guess out. Different every time. <b>Three flaws, compounding.</b></p>
+          <p class="section-head__sub">Every other AI coding tool is intent-guessed. Prose in. LLM guess out. Different
+            every time. <b>Three flaws, compounding.</b></p>
         </header>
 
         <div class="trap__split" data-reveal>
           <div class="output__features">
             <div class="output__feature">
               <h3>The spec is English. English is ambiguous.</h3>
-              <p>Natural language leaves room for interpretation. If implementation details are still debatable, the foundation is already weak.</p>
+              <p>Natural language leaves room for interpretation. If implementation details are still debatable, the
+                foundation is already weak.</p>
             </div>
 
             <div class="output__feature">
@@ -329,15 +476,21 @@
 
             <div class="output__feature">
               <h3>The human is in the loop. The loop is the bottleneck.</h3>
-              <p>Spec-driven puts a human in front of every generated diff. Five hundred files of AI output, reviewed line by line, by an exhausted senior at 4:47pm Friday.</p>
+              <p>Spec-driven puts a human in front of every generated diff. Five hundred files of AI output, reviewed
+                line by line, by an exhausted senior at 4:47pm Friday.</p>
             </div>
           </div>
 
           <figure class="trap__visual" aria-label="Spec-driven generation creates broken output">
-            <img src="assets/images/problem.png" alt="A confused robot standing beside broken generated documents" loading="lazy" decoding="async" />
+            <img src="assets/images/problem.png" alt="A confused robot standing beside broken generated documents"
+              loading="lazy" decoding="async" />
           </figure>
         </div>
 
+        <p class="manifesto" data-reveal>
+          <span class="manifesto__hl" style="font-size: 1.25rem;"><strong>Built for AI Agents:</strong> AI writes the
+            declaration. ModelHike compiles the code. Zero hallucinations. 100% deterministic.</span>
+        </p>
       </div>
     </section>
 
@@ -352,18 +505,23 @@
           <p class="section-head__sub">ModelHike fixes all three, by moving up from source code to source intent.</p>
         </header>
         <div class="fixes-section__split" data-reveal>
-          <figure class="fixes-section__visual" aria-label="Deterministic compiler turning intent into clean application screens">
-            <img src="assets/images/solution_punchy.png" alt="A deterministic compiler machine producing structured application outputs" loading="lazy" decoding="async" />
+          <figure class="fixes-section__visual"
+            aria-label="Deterministic compiler turning intent into clean application screens">
+            <img src="assets/images/solution_punchy.png"
+              alt="A deterministic compiler machine producing structured application outputs" loading="lazy"
+              decoding="async" />
           </figure>
 
           <div class="output__features">
             <div class="output__feature">
               <h3>Declaration, not prose</h3>
-              <p>Stop describing your app in English and hoping AI interprets it correctly. Declare it precisely in a DSL designed for that purpose.</p>
+              <p>Stop describing your app in English and hoping AI interprets it correctly. Define your system
+                architecture, APIs, and data models precisely in a unified DSL.</p>
             </div>
             <div class="output__feature">
               <h3>Compilation, not generation</h3>
-              <p>Same declaration twice produces the same code. Forever. Auditable. Reproducible. Shippable. No drift, no surprises.</p>
+              <p>Same declaration twice produces the same code. Forever. Auditable. Reproducible. Shippable. No drift,
+                no surprises.</p>
             </div>
             <div class="output__feature">
               <h3>Review at source intent</h3>
@@ -371,7 +529,8 @@
             </div>
             <div class="output__feature">
               <h3>AI in the Loop</h3>
-              <p>AI in your editor authors and refines the declaration. The transpiler handles the rest — grounded, repeatable, and reviewable.</p>
+              <p>AI in your editor authors and refines the declaration. The transpiler handles the rest — grounded,
+                repeatable, and reviewable.</p>
             </div>
           </div>
         </div>
@@ -390,6 +549,8 @@
         <header class="section-head">
           <span class="eyebrow">Intent-native</span>
           <h2 id="intent-title">Prompts guess. Compilers don't.</h2>
+          <p class="section-head__sub">You write twenty lines of why. It compiles five hundred files of what. Same
+            input, same output. No drift. Forever.</p>
         </header>
 
         <div class="diff" data-reveal>
@@ -476,11 +637,13 @@
             </div>
             <div class="output__feature">
               <h3>Let AI close the loop</h3>
-              <p>Use the ModelHike MCP or Skill in your editor to reverse-engineer changes back into the declaration — so the next transpile reflects your intent.</p>
+              <p>Use the ModelHike MCP or Skill in your editor to reverse-engineer changes back into the declaration —
+                so the next transpile reflects your intent.</p>
             </div>
             <div class="output__feature">
               <h3>Evolve the system over time</h3>
-              <p>Declaration, blueprint, and output stay in sync — not by locking you in, but by giving you the tools to keep them aligned.</p>
+              <p>Declaration, blueprint, and output stay in sync — not by locking you in, but by giving you the tools to
+                keep them aligned.</p>
             </div>
           </div>
 
@@ -516,7 +679,10 @@ modelhike generate --input app.modelhike \
           <button class="install__copy" type="button" aria-label="Copy install command" data-copy="npx modelhike demo">
             <code><span class="install__prompt">$</span> npx modelhike demo</code>
             <span class="install__icon" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
             </span>
             <span class="install__copied" aria-live="polite">Copied</span>
           </button>
@@ -524,11 +690,18 @@ modelhike generate --input app.modelhike \
 
         <div class="start__links" data-reveal>
           <a class="btn btn--ghost" href="https://github.com/modelhike/modelhike" rel="noopener">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.05c-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.69 1.24 3.34.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.92 10.92 0 0 1 5.74 0c2.18-1.49 3.14-1.18 3.14-1.18.62 1.58.23 2.75.12 3.04.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.05c-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.69 1.24 3.34.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.92 10.92 0 0 1 5.74 0c2.18-1.49 3.14-1.18 3.14-1.18.62 1.58.23 2.75.12 3.04.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z" />
+            </svg>
             GitHub
           </a>
           <a class="btn btn--ghost" href="#faq">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              aria-hidden="true">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+            </svg>
             Docs
           </a>
         </div>
@@ -551,33 +724,41 @@ modelhike generate --input app.modelhike \
         <div class="faq__list" id="faq-list">
           <details class="qa" data-reveal>
             <summary>Isn't this just MDA / UML repackaged?</summary>
-            <p>UML and MDA promised something similar — declare a model, generate the code. It failed because humans had to author the model by hand, and that was slower than just writing the code. The overhead killed adoption.</p>
-            <p>ModelHike flips that: AI authors the declaration for you. The labor problem is gone. What remains is determinism — same input, same output, every time — and that's the part that actually ships.</p>
+            <p>UML and MDA promised something similar — declare a model, generate the code. It failed because humans had
+              to author the model by hand, and that was slower than just writing the code. The overhead killed adoption.
+            </p>
+            <p>ModelHike flips that: AI authors the declaration for you. The labor problem is gone. What remains is
+              determinism — same input, same output, every time — and that's the part that actually ships.</p>
           </details>
 
           <details class="qa" data-reveal>
             <summary>How is this different from spec-driven dev?</summary>
-            <p>Specs describe. Declarations compile. Same input twice in spec-driven gets you two codebases. Same input twice in ModelHike gets you the same code. Forever.</p>
+            <p>Specs describe. Declarations compile. Same input twice in spec-driven gets you two codebases. Same input
+              twice in ModelHike gets you the same code. Forever.</p>
           </details>
 
           <details class="qa" data-reveal>
             <summary>What about agent frameworks like LangGraph?</summary>
-            <p>Different layer. Agent frameworks help the AI act. ModelHike makes the AI's output deterministic. Use both.</p>
+            <p>Different layer. Agent frameworks help the AI act. ModelHike makes the AI's output deterministic. Use
+              both.</p>
           </details>
 
           <details class="qa" data-reveal>
             <summary>What if I want to edit the generated code?</summary>
-            <p>Edit it. Then tell your AI editor to pull the change back into the declaration through the MCP. The declaration stays the source of truth. The code stays editable. Both stay in sync.</p>
+            <p>Edit it. Then tell your AI editor to pull the change back into the declaration through the MCP. The
+              declaration stays the source of truth. The code stays editable. Both stay in sync.</p>
           </details>
 
           <details class="qa" data-reveal>
             <summary>Is the DSL hard to learn?</summary>
-            <p>If you've written a schema or a route definition, you know 80% of it. Most developers are fluent in an afternoon.</p>
+            <p>If you've written a schema or a route definition, you know 80% of it. Most developers are fluent in an
+              afternoon.</p>
           </details>
 
           <details class="qa" data-reveal>
             <summary>What languages and frameworks does it support?</summary>
-            <p>NestJS and Spring Boot monorepos today. More blueprints shipping. The DSL is target-agnostic by design.</p>
+            <p>NestJS and Spring Boot monorepos today. More blueprints shipping. The DSL is target-agnostic by design.
+            </p>
           </details>
 
         </div>
@@ -587,60 +768,63 @@ modelhike generate --input app.modelhike \
   </main>
 
   <div class="closer">
-  <!-- ======================== CTA ======================== -->
-  <section class="cta-band" aria-labelledby="cta-title">
-    <div class="container cta-band__inner">
-      <h2 id="cta-title">Ready to escape code review hell?</h2>
-      <p>Declare the app once. Let ModelHike transpile clean, pro-grade source code.</p>
-      <a href="https://github.com/modelhike/modelhike" class="btn btn--github" rel="noopener">
-        <svg height="20" width="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-        </svg>
-        View on GitHub
-      </a>
-    </div>
-  </section>
-
-  <footer class="footer" role="contentinfo">
-    <div class="container footer__inner">
-      <div class="footer__col footer__col--brand">
-        <a href="index.html" class="brand" aria-label="ModelHike home">
-          <svg class="brand__mark" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-            <path d="M3 18 L9 6 L12 12 L15 6 L21 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+    <!-- ======================== CTA ======================== -->
+    <section class="cta-band" aria-labelledby="cta-title">
+      <div class="container cta-band__inner">
+        <h2 id="cta-title">Ready to escape code review hell?</h2>
+        <p>Declare the app once. Let ModelHike transpile clean, pro-grade source code.</p>
+        <a href="https://github.com/modelhike/modelhike" class="btn btn--github" rel="noopener">
+          <svg height="20" width="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path
+              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
           </svg>
-          <span class="brand__name">ModelHike</span>
+          View on GitHub
         </a>
-        <p class="footer__motto">Diff the why, not the what.</p>
-        <p class="footer__sub">The intent compiler.</p>
       </div>
+    </section>
 
-      <nav class="footer__col" aria-label="Product">
-        <h4>Product</h4>
-        <a href="#move">How it works</a>
-        <a href="#trap">vs. spec-driven</a>
-        <a href="#start">Install</a>
-        <a href="#faq">Docs</a>
-      </nav>
+    <footer class="footer" role="contentinfo">
+      <div class="container footer__inner">
+        <div class="footer__col footer__col--brand">
+          <a href="index.html" class="brand" aria-label="ModelHike home">
+            <svg class="brand__mark" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+              <path d="M3 18 L9 6 L12 12 L15 6 L21 18" fill="none" stroke="currentColor" stroke-width="1.6"
+                stroke-linejoin="round" stroke-linecap="round" />
+            </svg>
+            <span class="brand__name">ModelHike</span>
+          </a>
+          <p class="footer__motto">Diff the why, not the what.</p>
+          <p class="footer__sub">The intent compiler for the AI era.</p>
+        </div>
 
-      <nav class="footer__col" aria-label="Resources">
-        <h4>Resources</h4>
-        <a href="https://github.com/modelhike/modelhike" rel="noopener">GitHub</a>
-        <a href="llms.txt">llms.txt</a>
-        <a href="llms-full.txt">llms-full.txt</a>
-      </nav>
+        <nav class="footer__col" aria-label="Product">
+          <h4>Product</h4>
+          <a href="#move">How it works</a>
+          <a href="#trap">vs. spec-driven</a>
+          <a href="#start">Install</a>
+          <a href="#faq">Docs</a>
+        </nav>
 
-      <nav class="footer__col" aria-label="Company">
-        <h4>Project</h4>
-        <a href="#">Manifesto</a>
-      </nav>
-    </div>
-    <div class="container footer__bottom">
-      <span>© <span id="year">2026</span> ModelHike</span>
-      <span class="footer__hint"><span class="dot dot--g"></span> compiled, not guessed.</span>
-    </div>
-  </footer>
+        <nav class="footer__col" aria-label="Resources">
+          <h4>Resources</h4>
+          <a href="https://github.com/modelhike/modelhike" rel="noopener">GitHub</a>
+          <a href="llms.txt">llms.txt</a>
+          <a href="llms-full.txt">llms-full.txt</a>
+        </nav>
+
+        <nav class="footer__col" aria-label="Company">
+          <h4>Project</h4>
+          <a href="#">Manifesto</a>
+        </nav>
+      </div>
+      <div class="container footer__bottom">
+        <span>© <span id="year">2026</span> ModelHike</span>
+        <span class="footer__hint"><span class="dot dot--g"></span> compiled, not guessed.</span>
+      </div>
+    </footer>
   </div>
 
   <script src="assets/app.js" defer></script>
 </body>
+
 </html>
