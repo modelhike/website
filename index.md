@@ -7,8 +7,8 @@ Update this file whenever `index.html` copy changes.
 **Brand stack reference**
 
 - Category: Intent compiler
-- Slogan: Diff the why, not the what
-- Hero: AI is stealing your time. Diff the why, not the what.
+- Slogan: Diff the Intent, not the Code
+- Hero: AI is stealing your time. Diff the Intent, not the Code.
 - Technical positioning: Intent-native, not prompt-guessed
 - Manifestos in use:
   - *Code is downstream now.*
@@ -21,7 +21,7 @@ Update this file whenever `index.html` copy changes.
 
 > AI is stealing your time.
 
-# Diff the why, not the what.
+# Diff the Intent, not the Code.
 
 ModelHike is the intent compiler for the AI era. Spec-driven development has the right intent, but the wrong implementation.
 
@@ -36,7 +36,7 @@ $ npx modelhike demo
 → compiling intent            ·  blueprint = nestjs
 ✓ emitted 142 files           ·  deterministic hash 7af3·c910·ee01
 ✓ bootstrapping api on :3000
-ready in 0.84s                ·  diff your why.
+ready in 0.84s              
 ```
 
 ---
@@ -69,7 +69,7 @@ Declare the why. Let the compiler emit the what. Code stays where it belongs —
 
 ### Diff the why. Not the what.
 
-You write twenty lines. ModelHike compiles five hundred files, within a second. You diff what you wrote — not what fell out.
+You write twenty lines. ModelHike compiles five hundred files, within a second. You diff why you wrote — not what fell out.
 
 **Source — `booking.modelhike` (declaration, 18 lines · the why):**
 
@@ -288,7 +288,7 @@ Declare the app once. Let ModelHike transpile clean, pro-grade source code.
 ## 12. Footer
 
 **ModelHike**
-*Diff the why, not the what.*
+*Diff the Intent, not the Code.*
 The intent compiler.
 
 **Product** — How it works · vs. spec-driven · Install · Docs
